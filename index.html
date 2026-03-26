@@ -864,18 +864,19 @@ async function fetchLiveData(){
     }
   } else { setDot('finnhub','warn'); }
 
-  // FMP Earnings
-  if(STATE.keys.fmp){
+  // FMP Earning
+  {
     const earn=await fetchFMPEarnings();
     if(earn&&earn.length){
       renderEarningsFromAPI(earn.slice(0,8));
       setDot('fmp','ok');
       anySuccess=true;
     } else { setDot('fmp','warn'); }
-  } else { setDot('fmp','warn'); }
+  }
 
   if(STATE.keys.tradier) setDot('tradier','ok'); else setDot('tradier','warn');
   if(STATE.keys.polygon) setDot('polygon','ok'); else setDot('polygon','warn');
+
 
   // Always regenerate mock flow with live price incorporated
   STATE.flowData=genMockFlow(50);
