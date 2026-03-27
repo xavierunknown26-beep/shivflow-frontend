@@ -1388,7 +1388,7 @@ async function fetchLiveData(){
 
 function connectWS(){
   try{
-    const ws=new WebSocket('ws://localhost:8000/ws');
+    const ws=new WebSocket('wss://web-production-e0a54.up.railway.app/ws');
     ws.onmessage=e=>{try{const d=JSON.parse(e.data);if(d.SPY)document.getElementById('spy-price').textContent=d.SPY.toFixed(2);}catch{}};
     ws.onclose=()=>setTimeout(connectWS,5000);ws.onerror=()=>{};
   }catch{}
