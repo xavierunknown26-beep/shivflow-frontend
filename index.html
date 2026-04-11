@@ -576,66 +576,72 @@ tr:hover td{background:var(--ts-row-hover)}
   </div>
 
   <!-- NEWS TAB -->
-<div class="tab" id="tab-news">
-  <div class="stats-grid">
-    <div class="stat g">
-      <div class="stat-lbl">Bullish Articles</div>
-      <div class="stat-val g" id="n-bull"></div>
-      <div class="stat-sub">Last 24h</div>
+  <div class="tab" id="tab-news">
+    <div class="stats-grid">
+      <div class="stat g">
+        <div class="stat-lbl">Bullish Articles</div>
+        <div class="stat-val g" id="n-bull">—</div>
+        <div class="stat-sub">Last 24h</div>
+      </div>
+      <div class="stat r">
+        <div class="stat-lbl">Bearish Articles</div>
+        <div class="stat-val r" id="n-bear">—</div>
+        <div class="stat-sub">Last 24h</div>
+      </div>
+      <div class="stat a">
+        <div class="stat-lbl">Earnings Today</div>
+        <div class="stat-val a" id="n-earn">—</div>
+        <div class="stat-sub">After market</div>
+      </div>
+      <div class="stat b">
+        <div class="stat-lbl">Market Sentiment</div>
+        <div class="stat-val p" id="n-sent">—</div>
+        <div class="stat-sub">FMP / Finnhub</div>
+      </div>
     </div>
-    <div class="stat r">
-      <div class="stat-lbl">Bearish Articles</div>
-      <div class="stat-val r" id="n-bear"></div>
-      <div class="stat-sub">Last 24h</div>
+    <div class="panel">
+      <div class="ph">
+        <span class="ph-title">Market News</span>
+        <span class="hint" id="news-source">mock data</span>
+      </div>
+      <div id="news-list"></div>
     </div>
-    <div class="stat a">
-      <div class="stat-lbl">Market Sentiment</div>
-      <div class="stat-val a" id="n-sent"></div>
-      <div class="stat-sub">FMP / Finnhub</div>
-    </div>
-    <div class="stat b">
-      <div class="stat-lbl">News Source</div>
-      <div class="stat-val p" id="n-source">LIVE</div>
-      <div class="stat-sub">Finnhub</div>
+    <div class="panel">
+      <div class="ph"><span class="ph-title">Earnings Calendar</span></div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Date</th><th>Ticker</th><th>EPS Est.</th><th>EPS Actual</th><th>Rev Est.</th><th>When</th><th>Impact</th></tr></thead>
+          <tbody id="earn-body"></tbody>
+        </table>
+      </div>
     </div>
   </div>
-
-  <div class="panel">
-    <div class="ph">
-      <span class="ph-title">Market News</span>
-      <span class="hint" id="news-source">mock data</span>
-    </div>
-    <div id="news-list"></div>
-  </div>
-</div>
-</div>
 
 
   <!-- MOVERS TAB -->
-<div class="tab" id="tab-movers">
-  <div class="stats-grid">
-    <div class="stat g">
-      <div class="stat-lbl">Top Gainer</div>
-      <div class="stat-val g" id="m-top-gain">—</div>
-      <div class="stat-sub" id="m-top-gain-pct">—</div>
+  <div class="tab" id="tab-movers">
+    <div class="stats-grid">
+      <div class="stat g"><div class="stat-lbl">Top Gainer</div><div class="stat-val g" id="m-top-gain">—</div><div class="stat-sub" id="m-top-gain-pct">—</div></div>
+      <div class="stat r"><div class="stat-lbl">Top Loser</div><div class="stat-val r" id="m-top-lose">—</div><div class="stat-sub" id="m-top-lose-pct">—</div></div>
+      <div class="stat a"><div class="stat-lbl">Stocks Tracked</div><div class="stat-val a" id="m-count">—</div><div class="stat-sub">Alpaca IEX</div></div>
+      <div class="stat b"><div class="stat-lbl">Last Updated</div><div class="stat-val p" id="m-updated" style="font-size:14px">—</div><div class="stat-sub">auto-refresh 60s</div></div>
     </div>
-    <div class="stat r">
-      <div class="stat-lbl">Top Loser</div>
-      <div class="stat-val r" id="m-top-lose">—</div>
-      <div class="stat-sub" id="m-top-lose-pct">—</div>
-    </div>
-    <div class="stat a">
-      <div class="stat-lbl">Stocks Tracked</div>
-      <div class="stat-val a" id="m-count">20</div>
-      <div class="stat-sub">Alpaca IEX</div>
-    </div>
-    <div class="stat b">
-      <div class="stat-lbl">Last Updated</div>
-      <div class="stat-val p" id="m-updated" style="font-size:14px">—</div>
-      <div class="stat-sub">auto-refresh 60s</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div class="panel">
+        <div class="ph"><span class="ph-title" style="color:var(--green)">▲ Top Gainers</span></div>
+        <div class="tbl-wrap"><table><thead><tr><th>Ticker</th><th>Price</th><th>% Chg</th><th>Volume</th></tr></thead>
+        <tbody id="gainers-body"><tr><td colspan="4" class="tbl-empty">Loading...</td></tr></tbody></table></div>
+      </div>
+      <div class="panel">
+        <div class="ph"><span class="ph-title" style="color:var(--red)">▼ Top Losers</span></div>
+        <div class="tbl-wrap"><table><thead><tr><th>Ticker</th><th>Price</th><th>% Chg</th><th>Volume</th></tr></thead>
+        <tbody id="losers-body"><tr><td colspan="4" class="tbl-empty">Loading...</td></tr></tbody></table></div>
+      </div>
     </div>
   </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap
+</div><!-- content -->
+</div><!-- body -->
+</div><!-- app -->
 
 <script>
 // ─── STATE ───────────────────────────────────────────────────────────────────
@@ -757,6 +763,15 @@ function genMockNews(){
   return headlines;
 }
 
+function genMockEarnings(){
+  return[
+    {date:'Mar 19',ticker:'ORCL',eps_est:'1.42',eps_act:'—',rev_est:'$14.2B',when:'AMC',impact:'high'},
+    {date:'Mar 20',ticker:'FDX',eps_est:'4.85',eps_act:'—',rev_est:'$21.8B',when:'AMC',impact:'medium'},
+    {date:'Mar 21',ticker:'NKE',eps_est:'0.72',eps_act:'—',rev_est:'$12.1B',when:'AMC',impact:'medium'},
+    {date:'Mar 25',ticker:'MU',eps_est:'1.38',eps_act:'—',rev_est:'$8.7B',when:'AMC',impact:'high'},
+  ];
+}
+
 // ─── REAL API CALLS ──────────────────────────────────────────────────────────
 async function fetchFinnhubQuote(sym){
   const key=STATE.keys.finnhub;
@@ -804,6 +819,15 @@ async function fetchFinnhubSentiment(sym){
   }catch{return null;}
 }
 
+async function fetchFMPEarnings(){
+  const key=STATE.keys.fmp;
+  if(!key) return null;
+  try{
+    const r=await fetch(`https://financialmodelingprep.com/api/v3/earning_calendar?apikey=${key}`);
+    if(!r.ok) return null;
+    return await r.json();
+  }catch{return null;}
+}
 
 // ─── FETCH LIVE DATA ──────────────────────────────────────────────────────────
 async function fetchLiveData(){
@@ -841,10 +865,18 @@ async function fetchLiveData(){
     }
   } else { setDot('finnhub','warn'); }
 
+  // FMP Earnings
+  if(STATE.keys.fmp){
+    const earn=await fetchFMPEarnings();
+    if(earn&&earn.length){
+      renderEarningsFromAPI(earn.slice(0,8));
+      setDot('fmp','ok');
+      anySuccess=true;
+    } else { setDot('fmp','warn'); }
+  } else { setDot('fmp','warn'); }
 
   if(STATE.keys.tradier) setDot('tradier','ok'); else setDot('tradier','warn');
   if(STATE.keys.polygon) setDot('polygon','ok'); else setDot('polygon','warn');
-
 
   // Always regenerate mock flow with live price incorporated
   STATE.flowData=genMockFlow(50);
@@ -1136,7 +1168,34 @@ function renderMockNews(){
   document.getElementById('n-sent').textContent='Neutral';
 }
 
+function renderEarningsFromAPI(items){
+  const body=document.getElementById('earn-body');
+  body.innerHTML=items.map(e=>`<tr>
+    <td style="color:var(--text2)">${e.date}</td>
+    <td style="font-weight:500;color:var(--blue)">${e.symbol||e.ticker}</td>
+    <td>${e.epsEstimated!=null?'$'+e.epsEstimated.toFixed(2):(e.eps_est||'—')}</td>
+    <td style="color:${e.eps!=null&&e.epsEstimated!=null?(e.eps>e.epsEstimated?'var(--green)':'var(--red)'):'var(--text2)'}">
+      ${e.eps!=null?'$'+e.eps.toFixed(2):(e.eps_act||'—')}
+    </td>
+    <td style="color:var(--text2)">${e.revenueEstimated?'$'+(e.revenueEstimated/1e9).toFixed(1)+'B':(e.rev_est||'—')}</td>
+    <td><span class="badge ${(e.time||e.when)==='BMO'?'bc':'bbl'}">${e.time||e.when||'AMC'}</span></td>
+    <td><span class="badge ${(e.eps||0)>(e.epsEstimated||0)?'bc':'bun'}">—</span></td>
+  </tr>`).join('');
+}
 
+function renderMockEarnings(){
+  const data=genMockEarnings();
+  const body=document.getElementById('earn-body');
+  body.innerHTML=data.map(e=>`<tr>
+    <td style="color:var(--text2)">${e.date}</td>
+    <td style="font-weight:500;color:var(--blue)">${e.ticker}</td>
+    <td>${e.eps_est}</td>
+    <td style="color:var(--text3)">—</td>
+    <td style="color:var(--text2)">${e.rev_est}</td>
+    <td><span class="badge bbl">${e.when}</span></td>
+    <td><span class="badge ${e.impact==='high'?'bsw':'bbl'}">${e.impact}</span></td>
+  </tr>`).join('');
+}
 
 // ─── SORT ─────────────────────────────────────────────────────────────────────
 // ─── SECTION TOGGLES ─────────────────────────────────────────────────────────
@@ -1329,7 +1388,7 @@ async function fetchLiveData(){
 
 function connectWS(){
   try{
-    const ws=new WebSocket('wss://web-production-e0a54.up.railway.app/ws');
+    const ws=new WebSocket('ws://localhost:8000/ws');
     ws.onmessage=e=>{try{const d=JSON.parse(e.data);if(d.SPY)document.getElementById('spy-price').textContent=d.SPY.toFixed(2);}catch{}};
     ws.onclose=()=>setTimeout(connectWS,5000);ws.onerror=()=>{};
   }catch{}
