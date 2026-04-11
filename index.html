@@ -589,14 +589,14 @@ tr:hover td{background:var(--ts-row-hover)}
       <div class="stat-sub">Last 24h</div>
     </div>
     <div class="stat a">
-      <div class="stat-lbl">News Source</div>
-      <div class="stat-val a" id="n-source">LIVE</div>
-      <div class="stat-sub">Finnhub / Reuters</div>
+      <div class="stat-lbl">Market Sentiment</div>
+      <div class="stat-val a" id="n-sent"></div>
+      <div class="stat-sub">FMP / Finnhub</div>
     </div>
     <div class="stat b">
-      <div class="stat-lbl">Market Sentiment</div>
-      <div class="stat-val p" id="n-sent"></div>
-      <div class="stat-sub">FMP / Finnhub</div>
+      <div class="stat-lbl">News Source</div>
+      <div class="stat-val p" id="n-source">LIVE</div>
+      <div class="stat-sub">Finnhub</div>
     </div>
   </div>
 
@@ -607,6 +607,7 @@ tr:hover td{background:var(--ts-row-hover)}
     </div>
     <div id="news-list"></div>
   </div>
+</div>
 </div>
 
 
@@ -1134,34 +1135,7 @@ function renderMockNews(){
   document.getElementById('n-sent').textContent='Neutral';
 }
 
-function renderEarningsFromAPI(items){
-  const body=document.getElementById('earn-body');
-  body.innerHTML=items.map(e=>`<tr>
-    <td style="color:var(--text2)">${e.date}</td>
-    <td style="font-weight:500;color:var(--blue)">${e.symbol||e.ticker}</td>
-    <td>${e.epsEstimated!=null?'$'+e.epsEstimated.toFixed(2):(e.eps_est||'—')}</td>
-    <td style="color:${e.eps!=null&&e.epsEstimated!=null?(e.eps>e.epsEstimated?'var(--green)':'var(--red)'):'var(--text2)'}">
-      ${e.eps!=null?'$'+e.eps.toFixed(2):(e.eps_act||'—')}
-    </td>
-    <td style="color:var(--text2)">${e.revenueEstimated?'$'+(e.revenueEstimated/1e9).toFixed(1)+'B':(e.rev_est||'—')}</td>
-    <td><span class="badge ${(e.time||e.when)==='BMO'?'bc':'bbl'}">${e.time||e.when||'AMC'}</span></td>
-    <td><span class="badge ${(e.eps||0)>(e.epsEstimated||0)?'bc':'bun'}">—</span></td>
-  </tr>`).join('');
-}
 
-function renderMockEarnings(){
-  const data=genMockEarnings();
-  const body=document.getElementById('earn-body');
-  body.innerHTML=data.map(e=>`<tr>
-    <td style="color:var(--text2)">${e.date}</td>
-    <td style="font-weight:500;color:var(--blue)">${e.ticker}</td>
-    <td>${e.eps_est}</td>
-    <td style="color:var(--text3)">—</td>
-    <td style="color:var(--text2)">${e.rev_est}</td>
-    <td><span class="badge bbl">${e.when}</span></td>
-    <td><span class="badge ${e.impact==='high'?'bsw':'bbl'}">${e.impact}</span></td>
-  </tr>`).join('');
-}
 
 // ─── SORT ─────────────────────────────────────────────────────────────────────
 // ─── SECTION TOGGLES ─────────────────────────────────────────────────────────
