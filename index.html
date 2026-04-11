@@ -576,46 +576,38 @@ tr:hover td{background:var(--ts-row-hover)}
   </div>
 
   <!-- NEWS TAB -->
-  <div class="tab" id="tab-news">
-    <div class="stats-grid">
-      <div class="stat g">
-        <div class="stat-lbl">Bullish Articles</div>
-        <div class="stat-val g" id="n-bull">—</div>
-        <div class="stat-sub">Last 24h</div>
-      </div>
-      <div class="stat r">
-        <div class="stat-lbl">Bearish Articles</div>
-        <div class="stat-val r" id="n-bear">—</div>
-        <div class="stat-sub">Last 24h</div>
-      </div>
-      <div class="stat a">
-        <div class="stat-lbl">Earnings Today</div>
-        <div class="stat-val a" id="n-earn">—</div>
-        <div class="stat-sub">After market</div>
-      </div>
-      <div class="stat b">
-        <div class="stat-lbl">Market Sentiment</div>
-        <div class="stat-val p" id="n-sent">—</div>
-        <div class="stat-sub">FMP / Finnhub</div>
-      </div>
+<div class="tab" id="tab-news">
+  <div class="stats-grid">
+    <div class="stat g">
+      <div class="stat-lbl">Bullish Articles</div>
+      <div class="stat-val g" id="n-bull"></div>
+      <div class="stat-sub">Last 24h</div>
     </div>
-    <div class="panel">
-      <div class="ph">
-        <span class="ph-title">Market News</span>
-        <span class="hint" id="news-source">mock data</span>
-      </div>
-      <div id="news-list"></div>
+    <div class="stat r">
+      <div class="stat-lbl">Bearish Articles</div>
+      <div class="stat-val r" id="n-bear"></div>
+      <div class="stat-sub">Last 24h</div>
     </div>
-    <div class="panel">
-      <div class="ph"><span class="ph-title">Earnings Calendar</span></div>
-      <div class="tbl-wrap">
-        <table>
-          <thead><tr><th>Date</th><th>Ticker</th><th>EPS Est.</th><th>EPS Actual</th><th>Rev Est.</th><th>When</th><th>Impact</th></tr></thead>
-          <tbody id="earn-body"></tbody>
-        </table>
-      </div>
+    <div class="stat a">
+      <div class="stat-lbl">News Source</div>
+      <div class="stat-val a" id="n-source">LIVE</div>
+      <div class="stat-sub">Finnhub / Reuters</div>
+    </div>
+    <div class="stat b">
+      <div class="stat-lbl">Market Sentiment</div>
+      <div class="stat-val p" id="n-sent"></div>
+      <div class="stat-sub">FMP / Finnhub</div>
     </div>
   </div>
+
+  <div class="panel">
+    <div class="ph">
+      <span class="ph-title">Market News</span>
+      <span class="hint" id="news-source">mock data</span>
+    </div>
+    <div id="news-list"></div>
+  </div>
+</div>
 
 
   <!-- MOVERS TAB -->
@@ -763,15 +755,6 @@ function genMockNews(){
   return headlines;
 }
 
-function genMockEarnings(){
-  return[
-    {date:'Mar 19',ticker:'ORCL',eps_est:'1.42',eps_act:'—',rev_est:'$14.2B',when:'AMC',impact:'high'},
-    {date:'Mar 20',ticker:'FDX',eps_est:'4.85',eps_act:'—',rev_est:'$21.8B',when:'AMC',impact:'medium'},
-    {date:'Mar 21',ticker:'NKE',eps_est:'0.72',eps_act:'—',rev_est:'$12.1B',when:'AMC',impact:'medium'},
-    {date:'Mar 25',ticker:'MU',eps_est:'1.38',eps_act:'—',rev_est:'$8.7B',when:'AMC',impact:'high'},
-  ];
-}
-
 // ─── REAL API CALLS ──────────────────────────────────────────────────────────
 async function fetchFinnhubQuote(sym){
   const key=STATE.keys.finnhub;
@@ -819,14 +802,6 @@ async function fetchFinnhubSentiment(sym){
   }catch{return null;}
 }
 
-async function fetchFMPEarnings() {
-    try {
-      const r = await fetch('https://web-production-e0a54.up.railway.app/api/earnings');
-      if (!r.ok) return null;
-      const data = await r.json();
-      return Array.isArray(data) && data.length ? data : null;
-    } catch { return null; }
-  }
 
 // ─── FETCH LIVE DATA ──────────────────────────────────────────────────────────
 async function fetchLiveData(){
@@ -864,15 +839,6 @@ async function fetchLiveData(){
     }
   } else { setDot('finnhub','warn'); }
 
-  // FMP Earning
-  {
-    const earn=await fetchFMPEarnings();
-    if(earn&&earn.length){
-      renderEarningsFromAPI(earn.slice(0,8));
-      setDot('fmp','ok');
-      anySuccess=true;
-    } else { setDot('fmp','warn'); }
-  }
 
   if(STATE.keys.tradier) setDot('tradier','ok'); else setDot('tradier','warn');
   if(STATE.keys.polygon) setDot('polygon','ok'); else setDot('polygon','warn');
