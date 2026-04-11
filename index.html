@@ -612,29 +612,30 @@ tr:hover td{background:var(--ts-row-hover)}
 
 
   <!-- MOVERS TAB -->
-  <div class="tab" id="tab-movers">
-    <div class="stats-grid">
-      <div class="stat g"><div class="stat-lbl">Top Gainer</div><div class="stat-val g" id="m-top-gain">—</div><div class="stat-sub" id="m-top-gain-pct">—</div></div>
-      <div class="stat r"><div class="stat-lbl">Top Loser</div><div class="stat-val r" id="m-top-lose">—</div><div class="stat-sub" id="m-top-lose-pct">—</div></div>
-      <div class="stat a"><div class="stat-lbl">Stocks Tracked</div><div class="stat-val a" id="m-count">—</div><div class="stat-sub">Alpaca IEX</div></div>
-      <div class="stat b"><div class="stat-lbl">Last Updated</div><div class="stat-val p" id="m-updated" style="font-size:14px">—</div><div class="stat-sub">auto-refresh 60s</div></div>
+<div class="tab" id="tab-movers">
+  <div class="stats-grid">
+    <div class="stat g">
+      <div class="stat-lbl">Top Gainer</div>
+      <div class="stat-val g" id="m-top-gain">—</div>
+      <div class="stat-sub" id="m-top-gain-pct">—</div>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-      <div class="panel">
-        <div class="ph"><span class="ph-title" style="color:var(--green)">▲ Top Gainers</span></div>
-        <div class="tbl-wrap"><table><thead><tr><th>Ticker</th><th>Price</th><th>% Chg</th><th>Volume</th></tr></thead>
-        <tbody id="gainers-body"><tr><td colspan="4" class="tbl-empty">Loading...</td></tr></tbody></table></div>
-      </div>
-      <div class="panel">
-        <div class="ph"><span class="ph-title" style="color:var(--red)">▼ Top Losers</span></div>
-        <div class="tbl-wrap"><table><thead><tr><th>Ticker</th><th>Price</th><th>% Chg</th><th>Volume</th></tr></thead>
-        <tbody id="losers-body"><tr><td colspan="4" class="tbl-empty">Loading...</td></tr></tbody></table></div>
-      </div>
+    <div class="stat r">
+      <div class="stat-lbl">Top Loser</div>
+      <div class="stat-val r" id="m-top-lose">—</div>
+      <div class="stat-sub" id="m-top-lose-pct">—</div>
+    </div>
+    <div class="stat a">
+      <div class="stat-lbl">Stocks Tracked</div>
+      <div class="stat-val a" id="m-count">20</div>
+      <div class="stat-sub">Alpaca IEX</div>
+    </div>
+    <div class="stat b">
+      <div class="stat-lbl">Last Updated</div>
+      <div class="stat-val p" id="m-updated" style="font-size:14px">—</div>
+      <div class="stat-sub">auto-refresh 60s</div>
     </div>
   </div>
-</div><!-- content -->
-</div><!-- body -->
-</div><!-- app -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap
 
 <script>
 // ─── STATE ───────────────────────────────────────────────────────────────────
